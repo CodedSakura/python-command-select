@@ -1,5 +1,4 @@
 from classes import *
-from random import randint
 
 nodes = \
     Node("root").add_children(
@@ -8,7 +7,7 @@ nodes = \
         ).add_children(
             Option("option b", "pwd")
         ),
-        Option("option z", "echo \"" + str(randint(0, 100)) + "\""),
+        Option("option z", "echo '42 - Answer to the Ultimate Question of Life, the Universe, and Everything'"),
         Node("node b").add_children(
             Node("node c").add_children(
                 Option("option c", "echo \"Hello $USER!\""),
