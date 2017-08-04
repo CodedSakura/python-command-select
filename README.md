@@ -1,10 +1,11 @@
 # ReadMe
 
-This project is a console interface for selecting and executing shell commands
+This project is a console interface for selecting and executing bash commands
 
 *Works only in Linux based systems (including Mac)*
 
-Provided example looks like [image 1](http://thephisics101.eu/images/image-1.png)
+Provided example looks like this:  
+![image 1](http://thephisics101.eu/images/image-1.png)
 
 # Structure
 
@@ -16,7 +17,7 @@ The `nodes` variable is the one that holds the information about the display and
 
 ### Option
 
-`Option(name, command)`
+**`Option(name, command)`**
 
 `name` sets the display name for the option
 
@@ -26,11 +27,11 @@ The `nodes` variable is the one that holds the information about the display and
 
 Nodes can hold other nodes and options
 
-`Node(name)`
+**`Node(name)`**
 
-`name` sets the display name of the node
+`name` sets the display name of the node  
 
-`Node.add_children(*args)`
+**`Node.add_children(*args)`**
 
 `*args` are the nodes and options, can be chained
 
