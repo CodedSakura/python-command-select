@@ -46,3 +46,9 @@ Nodes can hold other nodes and options
 <kbd>Ctrl</kbd>+<kbd>C</kbd> to exit without selecting
 
 <kbd>h</kbd> to show the help menu
+
+# Running
+
+This programm can be run with python 3
+
+`python3 main.py`
