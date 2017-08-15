@@ -17,29 +17,25 @@ The `nodes` variable is the one that holds the information about the display and
 
 ### Option
 
-**`Option(name, command)`**
-
-`name` sets the display name for the option
-
+**`Option(name, command)`**  
+`name` sets the display name for the option  
 `command` sets the command which will be executed
 
 ### Node
 
 Nodes can hold other nodes and options
 
-**`Node(name)`**
-
+**`Node(name)`**  
 `name` sets the display name of the node  
 
-**`Node.add_children(*args)`**
-
+**`Node.add_children(*args)`**  
 `*args` are the nodes and options, can be chained
 
 # Controls
 
-<kbd>⭡</kbd> and <kbd>⭣</kbd> to navigate between `Selectable`s
+<kbd>⭡</kbd> and <kbd>⭣</kbd> to navigate between `Selectable` elements
 
-<kbd>⭠</kbd> and <kbd>⭢</kbd> to navigate between `Node`s
+<kbd>⭠</kbd> and <kbd>⭢</kbd> to navigate between `Node` elements
 
 <kbd>⮠</kbd> to select current `Option`
 
