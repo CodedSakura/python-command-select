@@ -1,25 +1,6 @@
+# coding=utf-8
 from classes import *
-
-nodes = \
-    Node("root").add_children(
-        Node("node a").add_children(
-            Option("option a", "echo 'Message for selecting option 1'"),
-        ).add_children(
-            Option("option b", "pwd")
-        ),
-        Option("option z", "echo '42 - Answer to the Ultimate Question of Life, the Universe, and Everything'"),
-        Node("node b").add_children(
-            Node("node c").add_children(
-                Option("option c", "echo \"Hello $USER!\""),
-                Option("option d", "echo '( ͡° ͜ʖ ͡°)'")
-            ),
-            Option("option f", "echo 'blah'"),
-            Node("node d").add_children(
-                Option("option e", "echo 'sudo rm -rf /'")
-            )
-        ),
-        Option("option g", "gg")
-    )
+from nodes import nodes
 
 help_text = \
     """press any key to continue
@@ -32,12 +13,6 @@ help_text = \
     """
 helping = False
 
-# what i'd like:
-#
-# node
-# ├── node
-# │   └── option
-# └── option
 def display():
     clear()
     print("Press h for help\n")

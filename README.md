@@ -9,7 +9,7 @@ Provided example looks like this:
 
 # Structure
 
-The `nodes` variable is the one that holds the information about the display and execution
+The `nodes` variable in `nodes.py` is the one that holds the information about the display and execution
 
 ## Selectable
 

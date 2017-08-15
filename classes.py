@@ -1,12 +1,13 @@
+# coding=utf-8
 import sys, tty, termios, os
 
-class C: #color
+class C: # Color
     END =       '\x1b[0m'
     BOLD =      '\x1b[1m'
     ITALIC =    '\x1b[3m'
     UNDERLINE = '\x1b[4m'
 
-    class F: #foreground
+    class F: # Foreground
         BLACK =  '\x1b[30m'
         RED =    '\x1b[31m'
         GREEN =  '\x1b[32m'
@@ -16,7 +17,7 @@ class C: #color
         CYAN =   '\x1b[36m'
         WHITE =  '\x1b[37m'
 
-    class B: #background
+    class B: # Background
         BLACK =  '\x1b[40m'
         RED =    '\x1b[41m'
         GREEN =  '\x1b[42m'
@@ -26,7 +27,7 @@ class C: #color
         CYAN =   '\x1b[46m'
         WHITE =  '\x1b[47m'
 
-class Key: # keycodes for things
+class Key: # Keycodes for things
     UP = '\x1b[A'
     DOWN = '\x1b[B'
     RIGHT = '\x1b[C'
@@ -36,7 +37,7 @@ class Key: # keycodes for things
     ESCAPE = chr(27)
 
 class GetCh:
-    #Gets a single character from standard input.  Does not echo to the screen.
+    # Gets a single character from standard input.  Does not echo to the screen.
     def __init__(self):
         self.impl = _GetChUnix()
 
@@ -78,16 +79,16 @@ class GetCh:
         return ''
 
 class _GetChUnix:
-   def __call__(self):
-       fd = sys.stdin.fileno()
-       old_settings = termios.tcgetattr(fd)
-       try:
-           tty.setraw(sys.stdin.fileno())
-           ch = sys.stdin.read(1)
-       finally:
-           termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+    def __call__(self):
+        fd = sys.stdin.fileno()
+        old_settings = termios.tcgetattr(fd)
+        try:
+            tty.setraw(sys.stdin.fileno())
+            ch = sys.stdin.read(1)
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
 
-       return ch
+        return ch
 
 class Selectable(object):
     selected = 0
@@ -107,22 +108,19 @@ class Node(Selectable):
         for i in range(len(args)):
             child = args[i]
             if not issubclass(child.__class__, Selectable):
-                raise TypeError(
-                    "Node.addChild() arg " + str(i) + " must be a subclass of class Select"
-                )
+                raise TypeError("Node.addChild() arg " + str(i) + " must be a subclass of class Select")
 
             self.children.append(child)
 
-        return self #for chaining
+        return self # For chaining
 
-    def display(self, level=1, upcoming=False):
+    def display(self, level=1):
         for i in range(len(self.children)):
             child = self.children[i]
             if child.__class__.__name__ == "Node" and len(child.children) > 0:
-                # print("    " * (level - 1) + ("├" if upcoming else "└") + "── " + C.BOLD + C.F.BLUE + child.name + C.END)
                 print("  " * level + C.BOLD + (C.F.BLUE if Selectable.selected != child.id else C.B.BLUE) + child.name + C.END)
 
-            child.display(level = level + 1, upcoming = i != len(self.children) - 1)
+            child.display(level=level + 1, upcoming=(i != len(self.children) - 1))
 
     def find(self, id):
         if self.id == id:
@@ -148,8 +146,7 @@ class Option(Selectable):
     def run(self):
         os.system(self.command)
 
-    def display(self, level=1, upcoming=False):
-        # print("    " * (level - 2) + ("├" if upcoming else "└") + "── " + self.name)
+    def display(self, level=1):
         print("  " * (level - 1) + (C.F.BLACK + C.B.WHITE if Selectable.selected == self.id else "") + self.name + C.END)
 
 
