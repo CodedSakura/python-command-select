@@ -5,7 +5,7 @@ This project is a console interface for selecting and executing bash commands
 *Works only in Linux based systems (including Mac)*
 
 Provided example looks like this:  
-![image 1](http://thephisics101.eu/images/image-1.png)
+![image 1](http://thephisics101.eu/images/image-2.png)
 
 # Structure
 
@@ -23,10 +23,12 @@ The `nodes` variable in `nodes.py` is the one that holds the information about t
 
 ### Node
 
-Nodes can hold other nodes and options
+Nodes can hold other nodes and options and can be collapsed  
+**Empty nodes wont be displayed**
 
-**`Node(name)`**  
+**`Node(name, collapsed)`**  
 `name` sets the display name of the node  
+`collapsed` (optional) if `True`, starts with the node collapsed
 
 **`Node.add_children(*args)`**  
 `*args` are the nodes and options, can be chained

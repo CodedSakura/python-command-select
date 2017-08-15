@@ -100,27 +100,31 @@ class Selectable(object):
 
 
 class Node(Selectable):
-    def __init__(self, name):
+    def __init__(self, name, collapsed=False):
         super(Node, self).__init__(name)
         self.children = []
+        self.collapsed = collapsed
 
     def add_children(self, *args):
         for i in range(len(args)):
             child = args[i]
             if not issubclass(child.__class__, Selectable):
-                raise TypeError("Node.addChild() arg " + str(i) + " must be a subclass of class Select")
+                raise TypeError("Node.add_children() arg " + str(i) + " must be a subclass of class Select")
 
             self.children.append(child)
 
         return self # For chaining
 
     def display(self, level=1):
+        if self.collapsed:
+            return
+
         for i in range(len(self.children)):
             child = self.children[i]
             if child.__class__.__name__ == "Node" and len(child.children) > 0:
-                print("  " * level + C.BOLD + (C.F.BLUE if Selectable.selected != child.id else C.B.BLUE) + child.name + C.END)
+                print("  " * (level - 1) + ("▸" if child.collapsed else "▾") + " " + C.BOLD + (C.F.BLUE if Selectable.selected != child.id else C.B.BLUE) + child.name + C.END)
 
-            child.display(level=level + 1, upcoming=(i != len(self.children) - 1))
+            child.display(level=level + 1)
 
     def find(self, id):
         if self.id == id:
@@ -136,6 +140,10 @@ class Node(Selectable):
                     return result
 
         return None
+
+    def collapse(self):
+        if self.id != 0:
+            self.collapsed = not self.collapsed
 
 
 class Option(Selectable):

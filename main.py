@@ -16,10 +16,7 @@ helping = False
 def display():
     clear()
     print("Press h for help\n")
-    if Selectable.selected == 0:
-        print(C.BOLD + C.B.BLUE + nodes.name + C.END)
-    else:
-        print(C.BOLD + C.F.BLUE + nodes.name + C.END)
+    print(C.BOLD + (C.B.BLUE if Selectable.selected == 0 else C.F.BLUE) + nodes.name + C.END)
     nodes.display()
 
 def main():
@@ -78,6 +75,9 @@ def main():
                 clear()
                 sel.run()
                 break
+            elif sel.__class__.__name__ == "Node":
+                sel.collapse()
+                display()
 
     os.system('setterm -cursor on')
 

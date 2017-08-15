@@ -10,14 +10,15 @@ nodes = \
         ),
         Option("option z", "echo '42 - Answer to the Ultimate Question of Life, the Universe, and Everything'"),
         Node("node b").add_children(
-            Node("node c").add_children(
+            Node("node c", collapsed=True).add_children(
                 Option("option c", "echo \"Hello $USER!\""),
                 Option("option d", "echo '( ͡° ͜ʖ ͡°)'")
             ),
             Option("option f", "echo 'blah'"),
             Node("node d").add_children(
                 Option("option e", "echo 'sudo rm -rf /'")
-            )
+            ),
+            Node("empty")
         ),
         Option("option g", "gg")
     )
