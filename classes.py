@@ -90,14 +90,14 @@ class _GetChUnix:
 
         return ch
 
-class Selectable(object):
+
+class Selectable:
     selected = 0
     iterator = 0
     def __init__(self, name):
         self.name = name
         self.id = Selectable.iterator
         Selectable.iterator += 1
-
 
 class Node(Selectable):
     def __init__(self, name, collapsed=False):
@@ -144,7 +144,6 @@ class Node(Selectable):
     def collapse(self):
         if self.id != 0:
             self.collapsed = not self.collapsed
-
 
 class Option(Selectable):
     def __init__(self, name, command):
